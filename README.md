@@ -30,6 +30,7 @@ Depending on which miner you have, you need to edit the file "driver-baikal.h" a
 # How to install and compile?
 - use SSH and log in as root user to your miner, default password is baikal.
 - cd ~
+- sudo apt-get install git
 - git clone https://github.com/cod3gen/sgminer-baikal.git
 - cd sgminer-baikal
 - nano driver-baikal.h      DO CHANGES AS ABOVE. If you have Giant N, no need to do changes.
