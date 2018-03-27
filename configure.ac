@@ -12,7 +12,7 @@ m4_define([lt_age], v_min)
 ##--##--##--##--##--##--##--##--##--##--##--##--##--##--##--##--##
 ##--##--##--##--##--##--##--##--##--##--##--##--##--##--##--##--##
 
-AC_INIT([sgminer], [v_ver], [really@not.net], [sgminer], [https://github.com/cod3gen/sgminer_bk])
+AC_INIT([sgminer], [v_ver], [really@not.net], [sgminer], [https://github.com/cod3gen/sgminer-baikal])
 
 AC_PREREQ(2.59)
 AC_CANONICAL_SYSTEM
