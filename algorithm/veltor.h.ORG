@@ -1,0 +1,8 @@
+#ifndef VELTOR_H
+#define VELTOR_H
+
+#include "miner.h"
+
+extern void veltor_regenhash(struct work *work);
+
+#endif
