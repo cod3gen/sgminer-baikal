@@ -35,6 +35,7 @@ Depending on which miner you have, you need to edit the file "driver-baikal.h" a
 - cd sgminer-baikal
 - nano driver-baikal.h      DO CHANGES AS ABOVE. If you have Giant N, no need to do changes.
 - autoreconf -fi && ./configure && make
+- cp /opt/scripta/bin/sgminer /opt/scripta/bin/sgminer_ORG
 
 This process will take about 15min. 
 
