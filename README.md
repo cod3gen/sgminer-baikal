@@ -47,6 +47,15 @@ Confirm overwrite. If you cannot overwrite, you need to stop screen session agai
 
 After a while you can reconnect to screen session(screen -x sgminer). When you do not need to see screen session any more, use ctrl+a+d keys to dettach!
 
+# Known issues when compiling
+
+If you run into an error such as "Killedg package lists… 99%", or other errors during compiling its because of low memory on the Pi. You need to add a swap which can be done as this:
+- sudo mkdir -p /var/cache/swap
+- sudo fallocate -l 256M /var/cache/swap/swap0
+- sudo chmod 0600 /var/cache/swap/swap0
+- sudo mkswap /var/cache/swap/swap0
+- sudo swapon /var/cache/swap/swap0
+
 # Included Softwares
 - SG Miner information and licensing: https://github.com/sgminer-dev/sgminer
 - LIB USB information and licensing: https://github.com/libusb/libusb
