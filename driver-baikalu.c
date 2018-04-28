@@ -35,7 +35,7 @@ static int baikal_sendmsg(struct cgpu_info *baikal, baikal_msg *msg)
     int err;
     int i, pos = 0;
     int amount;
-    uint8_t buf[512] = {0, };
+    int8_t buf[512] = {0, };
 
     buf[pos++] = ':';
     buf[pos++] = msg->miner_id;
@@ -175,7 +175,7 @@ static bool baikal_reset(struct cgpu_info *baikal)
         return (false);
     }
 
-    info->miner_count = msg.param;
+    info->miner_count = msg.miner_id + 1; //msg.param; v1.7 change
 
     mutex_unlock(baikal->mutex);
 
@@ -687,7 +687,7 @@ static bool baikal_send_work(struct cgpu_info *baikal, int miner_id)
         return (false);
     }
 
-    if (baikal_readmsg(baikal, &msg, 7) < 0) {
+    if (baikal_readmsg(baikal, &msg, 10) < 0) { // size was 7, now 10 v1.7 change
         applog(LOG_ERR, "baikal_send_work : readmsg error[%d]", miner_id);
         mutex_unlock(baikal->mutex);
         return (false);
