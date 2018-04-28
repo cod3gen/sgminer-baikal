@@ -30,11 +30,12 @@
 #define BAIKAL_FANSPEED_MAX     (100)
 #define BAIKAL_RECOVER_TEMP     (40)
 
-#define BAIKAL_RESET		    (0x01)
-#define BAIKAL_GET_INFO	        (0x02)
-#define BAIKAL_SET_OPTION	    (0x03)
-#define BAIKAL_SEND_WORK	    (0x04)
-#define BAIKAL_GET_RESULT	    (0x05)
+					        //v1.7
+#define BAIKAL_RESET		    (0x01) 	// msg.cmd = -95;
+#define BAIKAL_GET_INFO	            (0x02)	// msg.cmd = -117;
+#define BAIKAL_SET_OPTION	    (0x03)	// msg.cmd = -82;
+#define BAIKAL_SEND_WORK	    (0x04)	// msg.cmd = -69;
+#define BAIKAL_GET_RESULT	    (0x05)	// msg.cmd = 63;
 #define BAIKAL_SET_ID		    (0x06)
 #define BAIKAL_SET_IDLE		    (0x07)
 
@@ -90,7 +91,7 @@ struct baikal_info {
 
 typedef struct {
     uint8_t     miner_id;
-    uint8_t     cmd;
+      int8_t     cmd;  //uint8_t     cmd; 
     uint8_t     param;
     uint8_t     dest;
     uint8_t     data[512];
