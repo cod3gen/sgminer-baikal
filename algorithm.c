@@ -1603,7 +1603,7 @@ int to_baikal_algorithm(algorithm_type_t type)
     case ALGO_SKEINCOIN:
         return 0x08;
     case ALGO_MYRIAD_GROESTL:
-        return 0x09;
+        return 0x77; // before FW v1.7: 0x09;  <-- I *think* 0x77 this is correct.
 //#if 0 Moved to allow test of other algos
     case ALGO_GROESTL:
         return 0x0A;
