@@ -63,7 +63,7 @@ If you run into an error such as "Killedg package lists… 99%", or other errors
 - Jansson information and licensing: https://github.com/akheron/jansson
 
 # Get in touch
-Get in touch at Discord - cod3gen#5466
+Get in touch at Discord - -╤Powermining.pw>cod3gen#5466 - You can find me in this channel: https://discord.gg/epFf8bF
 
 Like my work?
 - ETH: 0x57A9F99645dC74F9373409A8Ba18Bc0F92566af3
