@@ -1,6 +1,8 @@
 # sgminer-baikal
 Rebuild of Baikal`s SG Miner for Giant X10 / N
 
+Brought to you by cod3gen - Make sure you use my mining pool https://www.powermining.pw :-D
+
 Since the guys over at Baikal obviously have not made their version of SG Miner open source, lets do it for them!
 
 The purpose for this recovery and rebuild was to see if it was possible to overclock these miners, and unlock extra algos for X10. Its not identical to the included sgminer with baikal miners however its performance is pretty damn close after monitoring two days. Some code cleanup should have been done, its messy thats its there without any proper use - and some of them are additional code from me thats not needed or even not correct.
@@ -39,15 +41,14 @@ Depending on which miner you have, you need to edit the file "driver-baikal.h" a
 
 This process will take about 15min. 
 
-When its done you need to:
-- screen -x sgminer
-- ctrl+c to stop screen session
-- cp sgminer /opt/scripta/bin/sgminer
+When its done you need to run this command:
+- screen -S sgminer -X quit && cp sgminer /opt/scripta/bin/sgminer
+
 Confirm overwrite. If you cannot overwrite, you need to stop screen session again and retry copy.
 
 After a while you can reconnect to screen session(screen -x sgminer). When you do not need to see screen session any more, use ctrl+a+d keys to dettach!
 
-# Known issues when compiling
+# Known issues when compiling or installing via apt
 
 If you run into an error such as "Killedg package lists… 99%", or other errors during compiling its because of low memory on the Pi. You need to add a swap which can be done as this:
 - sudo mkdir -p /var/cache/swap
