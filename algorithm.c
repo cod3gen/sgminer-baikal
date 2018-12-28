@@ -1595,26 +1595,27 @@ int to_baikal_algorithm(algorithm_type_t type)
     switch (type) {
 #if BAIKAL_TYPE & BAIKAL_1772
     case ALGO_X11:
-        return 0x01;
+        return BAIKAL_ALGO_X11;
     case ALGO_QUARK:
-        return 0x05;
+        return BAIKAL_ALGO_QUARK;
     case ALGO_QUBIT:
-        return 0x06;
+        return BAIKAL_ALGO_QUBIT;
     case ALGO_SKEINCOIN:
-        return 0x08;
+        return BAIKAL_ALGO_SKEIN;
     case ALGO_MYRIAD_GROESTL:
-        return 0x09;
-//#if 0 Moved to allow test of other algos
+        return BAIKAL_ALGO_MGROESTL;
     case ALGO_GROESTL:
-        return 0x0A;
-    case ALGO_NIST:
-        return 0x0C;
-    case ALGO_X11GOST:
-        return 0x07;
-#if 0
-    case ALGO_VELTOR:
-        return 0x0D;
-#endif
+        return BAIKAL_ALGO_MGROESTL;
+	case ALGO_X11GOST:
+		return BAIKAL_ALGO_X11GOST;
+	case ALGO_GROESTL:
+		return BAIKAL_ALGO_GROESTL;
+	case ALGO_SKEIN2:
+		return BAIKAL_ALGO_SKEIN2;
+	case ALGO_KECCAK:
+		return BAIKAL_ALGO_KECCAK;
+	case ALGO_NIST:
+		return BAIKAL_ALGO_NIST5;
 #endif 
 
 #if BAIKAL_TYPE & BAIKAL_1751

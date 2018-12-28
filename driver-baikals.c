@@ -308,7 +308,7 @@ static bool baikal_reset(struct cgpu_info *baikal)
 
     cgsleep_ms(200);
 
-    amount = baikal_readmsg(baikal, &msg, 7);
+    amount = baikal_readmsg(baikal, &msg, 9);
     if (amount < 0) {
         mutex_unlock(baikal->mutex);
         return (false);
@@ -649,6 +649,7 @@ static void baikal_checknonce(struct cgpu_info *baikal, baikal_msg *msg)
     work_idx    = msg->data[5];
     unit_id     = msg->data[7];
     nonce       = *((uint32_t *)msg->data);
+	nonce		-= work_idx; //tb32c: wtf baikal? probably RE inhibitor (decent one, bought baikal maybe a few days)
 
     if (work_idx >= BAIKAL_WORK_FIFO) {
         return;
@@ -661,6 +662,7 @@ static void baikal_checknonce(struct cgpu_info *baikal, baikal_msg *msg)
 #if BAIKAL_CHECK_STALE
     /* stale work */
     if (miner->works[work_idx]->devflag == false) {
+		applog(LOG_ERR, "stale? : %d[u:%d, c:%2d] : [%3d, %08x]", msg->miner_id, unit_id, chip_id, work_idx, nonce);
         return;
     }
 #endif 

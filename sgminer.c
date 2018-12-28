@@ -56,8 +56,8 @@ char *curly = ":D";
 #include "compat.h"
 #include "miner.h"
 #include "findnonce.h"
-#include "adl.h"
-#include "driver-opencl.h"
+//#include "adl.h"
+//#include "driver-opencl.h"
 //#include "bench_block.h"
 
 #include "algorithm.h"
@@ -3047,6 +3047,11 @@ static void share_result(json_t *val, json_t *res, json_t *err, const struct wor
 
     cgpu = get_thr_cgpu(work->thr_id);
 
+	struct baikal_info *info;
+	struct miner_info *miner;
+	info = cgpu->device_data;
+	miner = &info->miners[cgpu->device_id];
+
   if (json_is_true(res) || (work->gbt && json_is_null(res)) || (pool->algorithm.type == ALGO_CRYPTONIGHT && json_is_null(err))) {
     mutex_lock(&stats_lock);
     cgpu->accepted++;
@@ -3066,8 +3071,13 @@ static void share_result(json_t *val, json_t *res, json_t *err, const struct wor
         applog(LOG_DEBUG, "[THR%d] PROOF OF WORK RESULT: true (yay!!!)", work->thr_id);
         if (!QUIET) {
             if (total_pools > 1) {
-                applog(LOG_NOTICE, "Accepted %s %s %d at %s %s%s",
+				uint32_t nonce = miner->last_found_nonce;
+				uint8_t nibs[] = { nonce & 0x0000000F,(nonce & 0x000000F0) >> 4,(nonce & 0x00000F00) >> 8,(nonce & 0x0000F000) >> 12,(nonce & 0x000F0000) >> 16,(nonce & 0x00F00000) >> 20,(nonce & 0x0F000000) >> 24,(nonce & 0xF0000000) >> 28 };
+				uint32_t nonce_flip = (nibs[6] << 28) | (nibs[7] << 24) | (nibs[4] << 20) | (nibs[5] << 16) | (nibs[2] << 12) | (nibs[3] << 8) | (nibs[0] << 4) | nibs[1];
+				applog(LOG_NOTICE, "Accepted %s (%08x:%08x) %s %d at %s %s%s",
                        hashshow,
+						nonce,
+						nonce_flip,
                        cgpu->drv->name,
                        cgpu->device_id,
                        get_pool_name(pool),
@@ -8149,7 +8159,7 @@ bool submit_tested_work(struct thr_info *thr, struct work *work)
 	    (work->pool->algorithm.type == ALGO_CRYPTONIGHT_LITE)	) {
     }
     else if (!fulltest(work->hash, work->target)) {
-    applog(LOG_INFO, "%s %d: Share above target", thr->cgpu->drv->name,
+		applog(LOG_ERR, "%s %d: Share above target", thr->cgpu->drv->name,
            thr->cgpu->device_id);
         return (false);
   }

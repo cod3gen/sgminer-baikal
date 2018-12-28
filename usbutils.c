@@ -100,7 +100,7 @@ static struct usb_epinfo ltm_epinfos[] = {
     { LIBUSB_TRANSFER_TYPE_BULK,    64, EPI(1), 0, 0 },
     { LIBUSB_TRANSFER_TYPE_BULK,    64, EPO(2), 0, 0 }
 #else
-    { LIBUSB_TRANSFER_TYPE_BULK,    64, EPI(2), 0, 0 },
+	{ LIBUSB_TRANSFER_TYPE_BULK,    64, EPI(1), 0, 0 },//EPI(2) for stock, EPI(1) for custom tboy32c firmware
     { LIBUSB_TRANSFER_TYPE_BULK,    64, EPO(1), 0, 0 }
 #endif
 };

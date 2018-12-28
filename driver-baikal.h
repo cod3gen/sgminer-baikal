@@ -17,12 +17,12 @@
 #define BAIKAL_CLK_MIN  		(150)
 #define BAIKAL_CLK_MAX		    (400)
 
-#if BAIKAL_TYPE == BAIKAL_1751 // Really?
+#if BAIKAL_TYPE == BAIKAL_1751
 #define BAIKAL_CLK_DEF  		(200)
-#elif BAIKAL_TYPE == BAIKAL_1791 // Really?
+#elif BAIKAL_TYPE == BAIKAL_1791
 #define BAIKAL_CLK_DEF  		(400)
 #else
-#define BAIKAL_CLK_DEF  		(200) // This must be changed depending on your miner type. If you have Giant N set to 200, If you have X10 set to 300 and if you have B set to 400. Its left at 200 intentionally because Giant N is stock at 200.
+#define BAIKAL_CLK_DEF  		(300) // This must be changed depending on your miner type. If you have Giant N set to 200, If you have X10 set to 300 and if you have B set to 400. Its left at 200 intentionally because Giant N is stock at 200.
 #endif
 
 #define BAIKAL_CUTOFF_TEMP      (55)
@@ -30,21 +30,32 @@
 #define BAIKAL_FANSPEED_MAX     (100)
 #define BAIKAL_RECOVER_TEMP     (40)
 
-#define BAIKAL_RESET		    (0x01)
-#define BAIKAL_GET_INFO	        (0x02)
-#define BAIKAL_SET_OPTION	    (0x03)
-#define BAIKAL_SEND_WORK	    (0x04)
-#define BAIKAL_GET_RESULT	    (0x05)
+#define BAIKAL_RESET		    (0xA1)	//tb32c: random arbitrary opcodes - probably RE inhibitor (but not a good enough one)
+#define BAIKAL_GET_INFO	        (0x8B)
+#define BAIKAL_SET_OPTION	    (0xAE)
+#define BAIKAL_SEND_WORK	    (0xBB)
+#define BAIKAL_GET_RESULT	    (0x3F)
 #define BAIKAL_SET_ID		    (0x06)
 #define BAIKAL_SET_IDLE		    (0x07)
+
+#define BAIKAL_ALGO_X11			(0x71)
+#define BAIKAL_ALGO_QUBIT		(0x72)
+#define BAIKAL_ALGO_QUARK		(0x73)
+#define BAIKAL_ALGO_X11GOST	(0x74)
+#define BAIKAL_ALGO_SKEIN		(0x75)
+#define BAIKAL_ALGO_MGROESTL	(0x76)
+#define BAIKAL_ALGO_NIST5		(0x77)
+#define BAIKAL_ALGO_GROESTL	(0x78)
+#define BAIKAL_ALGO_SKEIN2		(0x79)
+#define BAIKAL_ALGO_KECCAK		(0x80)
 
 #define BAIKAL_MINER_TYPE_NONE  (0x00)
 #define BAIKAL_MINER_TYPE_MINI  (0x01)
 #define BAIKAL_MINER_TYPE_CUBE  (0x02)
 
-#define BAIKAL_ENABLE_SETCLK    (0)
+#define BAIKAL_ENABLE_SETCLK    (0
 
-#define BAIKAL_CHECK_STALE      (0)
+#define BAIKAL_CHECK_STALE      (1)
 #define BAIKAL_EN_HWE           (1)
 #define BAIKAL_CLK_FIX          (0)
 
@@ -73,6 +84,7 @@ struct miner_info {
     uint8_t work_idx;
     struct work *works[BAIKAL_WORK_FIFO];
     cgtimer_t start_time;
+	uint32_t last_found_nonce;
 };
 
 

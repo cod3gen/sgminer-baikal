@@ -824,11 +824,13 @@ bool fulltest(const unsigned char *hash, const unsigned char *target)
     hash_str = bin2hex(hash_swap, 32);
     target_str = bin2hex(target_swap, 32);
 
-    applog(LOG_DEBUG, " Proof: %s\nTarget: %s\nTrgVal? %s",
-      hash_str,
-      target_str,
-      rc ? "YES (hash <= target)" :
-           "no (false positive; hash > target)");
+	if (!rc) {
+		applog(LOG_ERR, " \nProof:  %s\nTarget: %s\nTrgVal? %s",
+			hash_str,
+			target_str,
+			rc ? "YES (hash <= target)" :
+			"no (false positive; hash > target)");
+	}
 
     free(hash_str);
     free(target_str);

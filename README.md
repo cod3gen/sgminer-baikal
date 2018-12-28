@@ -1,5 +1,7 @@
-# sgminer-baikal
+﻿# sgminer-baikal
 Rebuild of Baikal`s SG Miner for Giant X10 / N
+
+- This edition is changed by tboy32c. With tboy32c custom firmware, you can now mine Grøestlcoin on x10's. Custom firmware can be found here: https://drive.google.com/open?id=1jqSKB3G-nKtHLF3dfPGalSgNLOiHAMBf
 
 Brought to you by cod3gen - Make sure you use my mining pool https://www.powermining.pw :-D
 
