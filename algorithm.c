@@ -1604,18 +1604,16 @@ int to_baikal_algorithm(algorithm_type_t type)
         return BAIKAL_ALGO_SKEIN;
     case ALGO_MYRIAD_GROESTL:
         return BAIKAL_ALGO_MGROESTL;
+    case ALGO_X11GOST:
+        return BAIKAL_ALGO_X11GOST;
     case ALGO_GROESTL:
-        return BAIKAL_ALGO_MGROESTL;
-	case ALGO_X11GOST:
-		return BAIKAL_ALGO_X11GOST;
-	case ALGO_GROESTL:
-		return BAIKAL_ALGO_GROESTL;
-	case ALGO_SKEIN2:
-		return BAIKAL_ALGO_SKEIN2;
-	case ALGO_KECCAK:
-		return BAIKAL_ALGO_KECCAK;
-	case ALGO_NIST:
-		return BAIKAL_ALGO_NIST5;
+        return BAIKAL_ALGO_GROESTL;
+    case ALGO_SKEIN2:
+        return BAIKAL_ALGO_SKEIN2;
+    case ALGO_KECCAK:
+        return BAIKAL_ALGO_KECCAK;
+    case ALGO_NIST:
+        return BAIKAL_ALGO_NIST5;
 #endif 
 
 #if BAIKAL_TYPE & BAIKAL_1751
