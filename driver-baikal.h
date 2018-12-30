@@ -53,7 +53,7 @@
 #define BAIKAL_MINER_TYPE_MINI  (0x01)
 #define BAIKAL_MINER_TYPE_CUBE  (0x02)
 
-#define BAIKAL_ENABLE_SETCLK    (0
+#define BAIKAL_ENABLE_SETCLK    (0)
 
 #define BAIKAL_CHECK_STALE      (1)
 #define BAIKAL_EN_HWE           (1)
